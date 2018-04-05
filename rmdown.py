@@ -10,7 +10,6 @@ url = 'http://www.rmdown.com/download.php'
 root_path ='E:\\images\\'
 
 def load(json_file,callback):
-    callback.next()
     bar = progressbar.ProgressBar()
     for line in bar(open(json_file, 'r')):
         data = json.loads(line)
@@ -19,8 +18,7 @@ def load(json_file,callback):
                 payload = get_payload(file_url);
                 if payload.has_key('ref') and payload.has_key('reff'):
                     path=file_path(data["t_title"],payload["ref"])
-                    callback.send(path,payload)
-    callback.close()
+                    callback(path,payload)
 
 def file_path(title,ref):
     if len(title):
@@ -31,7 +29,7 @@ def file_path(title,ref):
         title = u'ttt'
     if not os.path.exists(root_path+title):
         os.makedirs(root_path+title)
-    logging.info('Got %s', title)
+    logging.error('Got %d', title)
     return '%s/%s.torrent' % (title,ref)
 
 def get_payload(url):
@@ -49,5 +47,4 @@ def download(path,payload):
         decode.write(r.content)
 
 if __name__ == '__main__':
-    d=download()
-    load(json_file,d)
+    load(json_file,download)
