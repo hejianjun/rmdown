@@ -1,6 +1,6 @@
 # REDOWN
 
-这是配合[t66y-spider](https://github.com/hejianjun/t66y-spider)使用的，目前只支持jsonlines格式
+心（jing）血（chong）来（shang）潮（nao）想要下载某网站所以的种子，于是写了个自动下载种子的工具，此工具是配合[t66y-spider](https://github.com/hejianjun/t66y-spider)使用的，目前只支持jsonlines格式
 
 使用方法为
 
